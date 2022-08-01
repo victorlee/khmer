@@ -1,0 +1,634 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pali-oriented Khmer typer</title>
+<meta charset="utf-8">
+
+    <script type="text/javascript">
+	  
+var conversion = {
+
+
+"k": "ក",
+"kh": "ខ",
+"g": "គ",
+"gh": "ឃ",
+"ng": "ង",
+
+"c": "ច",
+"ch": "ឆ",
+"j": "ជ",
+"jh": "ឈ",
+"ny": "ញ",
+
+"T": "ដ",
+"Th": "ឋ",
+"D": "ឌ",
+"Dh": "ឍ",
+"N": "ណ",
+
+"t": "ត",
+"th": "ថ",
+"d": "ទ",
+"dh": "ធ",
+"n": "ន",
+
+"p": "ប",
+"ph": "ផ",
+"b": "ព",
+"bh": "ភ",
+"m": "ម,
+
+"h": "ហ",
+"y": "យ",
+"r": "រ",
+"l": "ល",
+"L":"ឡ", //ळ
+"v": "វ",
+"sh": "ឝ",
+"S": "ឞ",
+"s": "ស",
+
+"qa":"អ",
+"qi":"ឥ",
+"qii":"ឦ",
+"qu":"ឧ",
+"quu":"ឪ",
+"qR": "ឫ",
+"qRR": "ឬ",
+"qL": "ឭ",
+"qLL": "ឮ",
+"qe":"ឯ",
+"qee":"ឰ",
+"qo":"ឲ",
+"qoo":"ឱ",
+
+"a":"ា",
+"i":"ិ",
+"ii":"ី",
+"w":"ឹ",
+"ww":"ឺ",
+"u":"ុ",
+"uu":"ូ",
+"uo":"ួ",
+"aa":"ើ",
+"wa":"ឿ", 
+"ia":"ៀ",
+"ei":"េ",
+"ae":"ែ",	
+"ai":"ៃ",
+"ao":"ោ",
+"au":"ៅ",
+
+"M":"ំ",
+"H":"ះ",
+"\u0022":"៉",
+"~":"៊",
+"\u0027":"់",
+"R":"៌",
+"-":"៍",
+"!":"៎",
+"*":"៏",
+"q":"៑",
+
+"+":"្",
+
+".":"។",
+"..":"៕",
+",":"៖",
+"@":"ៗ",
+"&":"៘",
+"#":"៙",
+"...":"៚",
+"$":"៛",
+
+"0":"០",
+"1":"១",
+"2":"២",
+"3":"៣",
+"4":"៤",
+"5":"៥",
+"6":"៦",
+"7":"៧",
+"8":"៨",
+"9":"៩",
+
+
+
+
+
+
+        };
+
+ var maxLength = Object.keys(conversion)
+    .reduce((a, b) => a.length > b.length ? a : b) // get the longest word
+    .length; // and it's length
+  
+  function convert (text) {
+    var converted = "";
+    var cur = 0;
+    while (cur < text.length) {
+      var testedPhoneme;
+      var symbol = undefined;
+      for (var length = maxLength; length > 0; length --) {
+        testedPhoneme = text.substr(cur, length);
+        if (conversion[testedPhoneme]) {
+          symbol = conversion[testedPhoneme];
+          break; // stop the loop
+        }
+      }
+      if (symbol) {
+        converted += symbol;
+        cur += testedPhoneme.length;
+      }
+      else {
+        converted += text[cur]
+        cur++;
+      }
+    }
+    return converted
+  }
+
+  function onInputTextChange(txt) {
+    var outputTextareaElem = document.getElementById("output_textarea");
+    var div = document.createElement("div");
+    var outputHtmlEntities = convert(txt);
+    div.innerHTML = outputHtmlEntities;
+    outputTextareaElem.value = div.innerText;
+  }
+
+
+        function select() {
+          const input = document.getElementById('input_textarea');
+          input.focus();
+          input.select();
+        }   
+        function copytext() {
+          var copyText = document.getElementById("output_textarea");
+          copyText.select();
+          copyText.setSelectionRange(0, 99999)
+          document.execCommand("copy");
+        }
+
+    </script>
+    
+<style>
+@import url(https://victorlee.github.io/fonts/stylesheet.css);
+html {
+font-family:arial
+}
+table {
+  border-collapse: collapse;
+  width: 90%;
+}
+td, th {
+  border: 1px solid #AAA;
+  text-align: center;
+  padding: 1px;
+}
+textarea {
+	font-size: 16pt;
+	font-family: Arial;
+    width: 96%;
+} 
+.note {
+  border: 1px solid #DDD;
+  width: 30%;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+</style>
+
+
+</head>
+<body>  
+
+<body>  
+
+<center><h1 class="text-center">Pali-oriented Khmer typer</h1>
+<table>
+<thead>
+<tr>
+<th>	
+<button onclick="select('input_textarea')">Select all</button>
+<button onclick="document.getElementById('input_textarea').value = ''">Clear</button>
+</th>
+<th>
+<button onclick="copytext()">Copy text</button>
+</th>
+<th style="width: 200px">Conversion table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<textarea
+id="input_textarea"
+autofocus=""
+placeholder="Input text here"
+rows="10"
+oninput="onInputTextChange(this.value)"></textarea>    
+</td>
+<td>
+<textarea rows="7" placeholder="output" id="output_textarea" style="font-family:Battambang, sans-serif"></textarea>    
+</td>
+<td>
+
+<center>
+<div style="overflow-y: scroll; height:250px; width:170px">
+
+<table>
+<thead>
+<tr>
+<th>in.</th>
+<th>out.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k</td>
+<td>ក</td>
+</tr>
+<tr>
+<td>kh</td>
+<td>ខ</td>
+</tr>
+<tr>
+<td>g</td>
+<td>គ</td>
+</tr>
+<tr>
+<td>gh</td>
+<td>ឃ</td>
+</tr>
+<tr>
+<td>ng</td>
+<td>ង</td>
+</tr>
+<tr>
+<td>c</td>
+<td>ច</td>
+</tr>
+<tr>
+<td>ch</td>
+<td>ឆ</td>
+</tr>
+<tr>
+<td>j</td>
+<td>ជ</td>
+</tr>
+<tr>
+<td>jh</td>
+<td>ឈ</td>
+</tr>
+<tr>
+<td>ny</td>
+<td>ញ</td>
+</tr>
+<tr>
+<td>T</td>
+<td>ដ</td>
+</tr>
+<tr>
+<td>Th</td>
+<td>ឋ</td>
+</tr>
+<tr>
+<td>D</td>
+<td>ឌ</td>
+</tr>
+<tr>
+<td>Dh</td>
+<td>ឍ</td>
+</tr>
+<tr>
+<td>N</td>
+<td>ណ</td>
+</tr>
+<tr>
+<td>t</td>
+<td>ត</td>
+</tr>
+<tr>
+<td>th</td>
+<td>ថ</td>
+</tr>
+<tr>
+<td>d</td>
+<td>ទ</td>
+</tr>
+<tr>
+<td>dh</td>
+<td>ធ</td>
+</tr>
+<tr>
+<td>n</td>
+<td>ន</td>
+</tr>
+<tr>
+<td>p</td>
+<td>ប</td>
+</tr>
+<tr>
+<td>ph</td>
+<td>ផ</td>
+</tr>
+<tr>
+<td>b</td>
+<td>ព</td>
+</tr>
+<tr>
+<td>bh</td>
+<td>ភ</td>
+</tr>
+<tr>
+<td>m</td>
+<td>ម</td>
+</tr>
+<tr>
+<td>h</td>
+<td>ហ</td>
+</tr>
+<tr>
+<td>y</td>
+<td>យ</td>
+</tr>
+<tr>
+<td>r</td>
+<td>រ</td>
+</tr>
+<tr>
+<td>l</td>
+<td>ល</td>
+</tr>
+<tr>
+<td>L</td>
+<td>ឡ//ळ</td>
+</tr>
+<tr>
+<td>v</td>
+<td>វ</td>
+</tr>
+<tr>
+<td>sh</td>
+<td>ឝ</td>
+</tr>
+<tr>
+<td>S</td>
+<td>ឞ</td>
+</tr>
+<tr>
+<td>s</td>
+<td>ស</td>
+</tr>
+<tr>
+<td>qa</td>
+<td>អ</td>
+</tr>
+<tr>
+<td>qi</td>
+<td>ឥ</td>
+</tr>
+<tr>
+<td>qii</td>
+<td>ឦ</td>
+</tr>
+<tr>
+<td>qu</td>
+<td>ឧ</td>
+</tr>
+<tr>
+<td>quu</td>
+<td>ឪ</td>
+</tr>
+<tr>
+<td>qR</td>
+<td>ឫ</td>
+</tr>
+<tr>
+<td>qRR</td>
+<td>ឬ</td>
+</tr>
+<tr>
+<td>qL</td>
+<td>ឭ</td>
+</tr>
+<tr>
+<td>qLL</td>
+<td>ឮ</td>
+</tr>
+<tr>
+<td>qe</td>
+<td>ឯ</td>
+</tr>
+<tr>
+<td>qee</td>
+<td>ឰ</td>
+</tr>
+<tr>
+<td>qo</td>
+<td>ឲ</td>
+</tr>
+<tr>
+<td>qoo</td>
+<td>ឱ</td>
+</tr>
+<tr>
+<td>a</td>
+<td>ា</td>
+</tr>
+<tr>
+<td>i</td>
+<td>ិ</td>
+</tr>
+<tr>
+<td>ii</td>
+<td>ី</td>
+</tr>
+<tr>
+<td>w</td>
+<td>ឹ</td>
+</tr>
+<tr>
+<td>ww</td>
+<td>ឺ</td>
+</tr>
+<tr>
+<td>u</td>
+<td>ុ</td>
+</tr>
+<tr>
+<td>uu</td>
+<td>ូ</td>
+</tr>
+<tr>
+<td>uo</td>
+<td>ួ</td>
+</tr>
+<tr>
+<td>aa</td>
+<td>ើ</td>
+</tr>
+<tr>
+<td>wa</td>
+<td>ឿ</td>
+</tr>
+<tr>
+<td>ia</td>
+<td>ៀ</td>
+</tr>
+<tr>
+<td>ei</td>
+<td>េ</td>
+</tr>
+<tr>
+<td>ae</td>
+<td>ែ    </td>
+</tr>
+<tr>
+<td>ai</td>
+<td>ៃ</td>
+</tr>
+<tr>
+<td>ao</td>
+<td>ោ</td>
+</tr>
+<tr>
+<td>au</td>
+<td>ៅ</td>
+</tr>
+<tr>
+<td>M</td>
+<td>ំ</td>
+</tr>
+<tr>
+<td>H</td>
+<td>ះ</td>
+</tr>
+<tr>
+<td>\u0022</td>
+<td>៉</td>
+</tr>
+<tr>
+<td>~</td>
+<td>៊</td>
+</tr>
+<tr>
+<td>\u0027</td>
+<td>់</td>
+</tr>
+<tr>
+<td>R</td>
+<td>៌</td>
+</tr>
+<tr>
+<td>-</td>
+<td>៍</td>
+</tr>
+<tr>
+<td>!</td>
+<td>៎</td>
+</tr>
+<tr>
+<td>*</td>
+<td>៏</td>
+</tr>
+<tr>
+<td>q</td>
+<td>៑</td>
+</tr>
+<tr>
+<td>+</td>
+<td>្</td>
+</tr>
+<tr>
+<td>.</td>
+<td>។</td>
+</tr>
+<tr>
+<td>..</td>
+<td>៕</td>
+</tr>
+<tr>
+<td>\u002C</td>
+<td>៖</td>
+</tr>
+<tr>
+<td>@</td>
+<td>ៗ</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>៘</td>
+</tr>
+<tr>
+<td>#</td>
+<td>៙</td>
+</tr>
+<tr>
+<td>...</td>
+<td>៚</td>
+</tr>
+<tr>
+<td>$</td>
+<td>៛</td>
+</tr>
+<tr>
+<td>0</td>
+<td>០</td>
+</tr>
+<tr>
+<td>1</td>
+<td>១</td>
+</tr>
+<tr>
+<td>2</td>
+<td>២</td>
+</tr>
+<tr>
+<td>3</td>
+<td>៣</td>
+</tr>
+<tr>
+<td>4</td>
+<td>៤</td>
+</tr>
+<tr>
+<td>5</td>
+<td>៥</td>
+</tr>
+<tr>
+<td>6</td>
+<td>៦</td>
+</tr>
+<tr>
+<td>7</td>
+<td>៧</td>
+</tr>
+<tr>
+<td>8</td>
+<td>៨</td>
+</tr>
+<tr>
+<td>9</td>
+<td>៩</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</center>
+
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+
+</body>
+</html>
