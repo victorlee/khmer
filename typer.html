@@ -628,6 +628,20 @@ oninput="onInputTextChange(this.value)"></textarea>
 </tr>
 </tbody>
 </table>
+
+	<div>font change <input type="checkbox" id="fontChange" onclick="fontChange()"></div>
+<script>	
+function fontChange() {
+  var checkBox = document.getElementById("fontChange");
+  var text = document.getElementById("text");
+  if (checkBox.checked == true){
+document.getElementById("output_textarea").style.fontFamily = 'Fasthand';
+  } else {
+document.getElementById("output_textarea").style.fontFamily = 'Battambang';
+  }
+}
+</script>
+
 </center>
 
 </body>
